@@ -1,0 +1,66 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+.header {
+    background-color: v.$verde;
+
+    h1 {
+        color: v.$blanco;
+        text-align: center;
+        @include m.tablet {
+            margin: 0;
+            
+        }
+       
+    }
+
+    .contenido-header {
+        padding: 2 rem;
+       
+        @include m.tablet {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+  
+
+    }
+}
+
+// aqui el h1 lo hemos anidado, pero cuando compile creará selectores válidos
+// abajo en el hover se escribiria a:hover pero te crea un espacio, que no para de reescribirse, para evitar que haga eso, se usa un amperson & en lugar de a y elimina el espacio
+
+.navegacion-principal {
+    @include m.tablet {
+        display: flex;
+        gap: 2rem;
+        
+    }
+    a{
+     
+        
+        display: block;
+        text-align: center;
+        color: v.$blanco;
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+        @include m.tablet {
+            margin: 0;
+            
+        }
+
+        &:hover {
+            color: v.$amarillo;
+        }
+    }
+
+}
+
+// .prueba {
+//     @include m.heading(v.$amarillo, true);
+
+// }
+// .texto {
+//     @include m.heading;
+
+// }

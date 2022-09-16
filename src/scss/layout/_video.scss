@@ -1,0 +1,60 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+// para que el video no se agrande demasiado le ponemos un max-height pero esto hara que se corte, se arregla con un overflow
+
+.video {
+    position: relative;
+    max-height: 70rem;
+    min-height: 50rem;
+    overflow: hidden;
+
+    .overlay {
+        position: absolute;   // con esto se pone el texto encima del video
+        background: rgb(126,2,195);
+        background: linear-gradient(270deg, rgba(126,2,195,1) 0%, rgba(255,110,110,0.5) 100%); 
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    //utilizamos overlay para posicionar bien el texto, usando flex nos dara acceso para alinear verticalmente y no solo por defecto (izqda a dcha)
+    // cuando el flexdirection es row puedes alinear con justify pero cuando lo cambias a column, justify permite alinear verticalmente
+
+    video {
+        width: auto;
+        display: block;   //asi toma todo el espacio
+        @include m.desktop {
+            width: 100%;
+            
+        }
+    }
+}
+
+//z-index es para aquellos casos, como este, donde el video se pone encima del texto y no puedes seleccionarlo
+// con eso, podras cambiar el orden (imaginarlo como un libro y sus hojas) si pone -1 el texto desaparece porque se pone detrás, a partir de 1 ya vale
+
+.contenido-video {
+    z-index: 10 ;
+    h2 {
+        color: v.$blanco;
+        font-size: 7rem;
+        margin: 0;
+
+    }
+
+    p{
+        background-color:v.$rosa;
+        display: inline-block;
+        padding: 1rem 2rem;
+        color: v.$blanco;
+        font-weight: 700;
+        font-size: 2.4rem;
+        margin: 0;
+    }
+}
+
+// aqui el parrafo por defecto usa todo el espacio disponible, display inline-block cogera solo hasta donde acaba el texto

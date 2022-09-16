@@ -1,0 +1,31 @@
+{
+  "name": "festivalmusica_inicio",
+  "version": "1.0.0",
+  "description": "Proyecto con Gulp, SASS y HTML",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch src/scss:build/css",
+    "tarea": "gulp tarea",
+    "css": "gulp css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliciaGutierrezMartin/MusicFest.git"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp"
+  ],
+  "author": "Alicia Gutiérrez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliciaGutierrezMartin/MusicFest/issues"
+  },
+  "homepage": "https://github.com/AliciaGutierrezMartin/MusicFest#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.54.8"
+  }
+}
