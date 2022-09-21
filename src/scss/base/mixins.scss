@@ -26,6 +26,13 @@
     }
 }
 
+@mixin grid ($columnas, $espacio) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: $espacio;
+}
+
+
 // @mixin heading($color: blue, $border-radius:false) {
 //     text-transform: uppercase;
 //     font-size: 2.4rem;
