@@ -1,0 +1,99 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.lineup {
+    background-color: v.$rosa;
+    padding: 5rem 0;
+
+
+
+    h3, p {
+        text-align: center;
+        color: v.$blanco;
+    }
+
+    .dia {
+        text-transform: uppercase;
+        margin: 5rem 0;
+    }
+
+}
+
+.escenarios-contenedor {
+    @include m.tablet {
+        @include m.grid(2, 5rem)
+        
+    }
+
+    p {
+        color: v.$negro;
+    }
+    
+    .escenario {
+        padding-top: 2rem;
+
+        .nombre-escenario {
+            &:after {
+                content: '';
+                display: block;
+                width: 20rem;
+                height: 10rem;
+                background-size: 15rem;
+                background-repeat: no-repeat;
+                background-position: center center;
+                margin: 2rem auto 0 auto;
+
+            }
+        }
+    }
+
+}
+
+//como ambos comparten la clase escenario, le hemos agregado todas las propiedades para que nos cree el bloque, y en base a la clase de cada uno, edm o rock, le agregamos la img
+
+// edm clase padre, el siguiente el elemento donde se crea el bloque, en sas las imgs es mas complicado porque pierdes la referencias de las imgs, la cual será en donde va a compilar
+
+.edm .nombre-escenario:after {
+    background-image: url(../img/icono_edm.png) ;
+
+}
+
+.rock .nombre-escenario:after {
+    background-image: url(../img/icono_rock.png) ;
+
+}
+
+// los ul te agregan por defecto las viñetas, margin y padding, por lo que crearemos un mixin, lo añades en la pag. con sus elementos y lo agregas al css
+.calendario {
+    @include m.resetear-lista;
+    li {
+        padding: 2.5rem;
+        font-weight: bold;
+
+
+        span {
+            font-weight: 400;
+
+        }
+    }
+
+
+}
+
+// para crear las lineas de un color más oscuro, darken nth-child
+
+.bg-amarillo {
+    background-color: v.$amarillo;
+
+    li:nth-child(odd) {
+        background-color: darken(v.$amarillo, 15%);
+    }
+
+}
+
+.bg-verde {
+    background-color: v.$verde;
+    li:nth-child(odd) {
+        background-color: darken(v.$verde, 10%);
+    }
+}

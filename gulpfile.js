@@ -74,18 +74,30 @@ function versionAvif (done) {
 
 }
 
+// creaos la función porque no tenemos de js
+function javascript ( done ) {
+    src('src/js/**/**.js') // identificamos
+    .pipe(dest('build/js')); // indicamos la nueva ubicación
+
+    done();
+}
+
 
 // en lugar de modificar la función de arriba, creamos una nueva
 
 function dev(done) {
     // watch('src/scss/app.scss', css)  // cogemos la ruta e indicamos que queremos llamar la función css, asi cada vez que cambie esta hoja de estilos, se manda llamar el css y realiza todas las acciones anteriores
-    watch('src/scss/**/**.scss', css)  // esto lo hacemos para que haga watch en todas las carpetas dentro de src/scss a cualquier fichero da igual el nombre pero que acabe .sccs
+    watch('src/scss/**/**.scss', css);  // esto lo hacemos para que haga watch en todas las carpetas dentro de src/scss a cualquier fichero da igual el nombre pero que acabe .sccs
+    watch('src/scss/**/**.js', javascript);
     done(); //callback
 }
 
 // arriba no podemos asi que lo hacemos llamar asi:
 
 exports.css = css;
+exports.js = javascript;
+
+
 
 // llamamos imagenes asi, y la añadimos a dev
 
@@ -100,7 +112,7 @@ exports.versionAvif = versionAvif;
 
 //y ahora podemos hacerla llamar así:
 
-exports.dev = parallel(imagenes, versionWebp, versionAvif, dev);
+exports.dev = parallel(imagenes, versionWebp, versionAvif, javascript, dev);
 
 // si en la terminal escribimos npx gulp css, te marca error, sass no es una función, y eso es que tenemos un require sass
 // necesitamos un conector de sass que se pueda comunicar con gulp, este tiene muchos plugins y lo puedes buscar
