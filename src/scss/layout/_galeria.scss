@@ -1,0 +1,70 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.galeria {
+    padding: 5rem 0;
+    h3 {
+        text-align: center;
+    }
+}
+
+.galeria-imagenes {
+    @include m.resetear-lista;
+    @include m.grid(2, 2rem);
+    @include m.telefono {
+    @include m.grid (3, 2rem);
+        
+    }
+    @include m.tablet {
+        @include m.grid (4, 2rem);
+        
+    }
+    @include m.tablet {
+        @include m.grid(4, 2rem);
+        
+    }
+    @include m.desktop {
+        @include m.grid( 6, 2rem);
+    };
+
+}
+
+.overlay {
+    position: fixed;    //hace que se quede fijo, da igual que des scroll
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    // pero queremos posicionarlo, tomará todo de la pantalla
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;   //place items centra horizontal y verticalmente
+
+    background-color: rgb(0 0 0 /.5);
+
+    picture {
+        display: block;
+        max-width: 80rem;
+    }
+}
+
+.btn-cerrar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;  // hacer un circulo
+    background-color: v.$blanco;
+    color: v.$negro;
+// para centrar la x en el circulo
+    display: grid;                  
+    place-items: center;
+    font-weight: bold;
+// aparezca la mano
+    &:hover {
+        cursor: pointer;
+    }
+
+}

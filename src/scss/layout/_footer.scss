@@ -1,0 +1,13 @@
+@use 'base/variables' as v;
+
+.site-footer {
+    background-color: v.$rosa;
+    padding: 1rem;
+    p {
+        margin: 0;   // los p tienen mucho margin mejor quitarlos que tocar tanto el padding
+        text-align: center;
+        color: v.$blanco;
+
+    }
+
+}
