@@ -11,20 +11,28 @@ const {src, dest, watch, parallel } = require("gulp");
 // CSS
 const sass = require("gulp-sass")(require('sass')); // aqui no afecta los nombres porque esta función solo sirve para importar
 const plumber = require('gulp-plumber'); // instalo con npm i --save-dev gulp-plumber y lo añado aqui
-
+const autoprefixer = require ('autoprefixer');  //ayuda al soporte de los navegadores
+const cssnano = require('cssnano');   // ayuda a comprimir nuestro codigo css
+const postcss = require('gulp-postcss');   // para las transformaciones de los anteriores
+const sourcemaps = require('gulp-sourcemaps');
 // IMAGENES
 const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin'); // el nombre siempre se lo pones tu, en el terminal hemos instalado uno concreto, npm i --save-dev gulp-imagemin@7.1.0, el @ es para instalar la que tu quieres en especifico
 const webp = require('gulp-webp');  // esta función va a convertir las imágenes
 const avif = require ('gulp-avif');
 
+// Javascript
+const terser = require('gulp-terser-js');  // y nos vamos a function js
 
 
 
 function css (done) {
     src('src/scss/**/**.scss') // identifica el archivo SASS, es una ruta
+    .pipe(sourcemaps.init())       // inicia el sourcemap y va guardando la referencia
     .pipe(plumber())            // lo ponemos antes del sas en caso de que haya errores no pare el flujo de trabajo
     .pipe(sass())              // compila, en pipe mandamos llamar la funcion de node, pero antes hay que importarlo con la función de arriba cost sass
+    .pipe(postcss([autoprefixer(), cssnano() ]) )
+    .pipe(sourcemaps.write('.')) // '.' indica que es la misma ubicación que la hoja de estilos css
     .pipe( dest ("build/css"));  // almacena en el disco duro
     done(); // callback que avisa a gulp cuando llegamos al final
 
@@ -77,6 +85,9 @@ function versionAvif (done) {
 // creaos la función porque no tenemos de js
 function javascript ( done ) {
     src('src/js/**/**.js') // identificamos
+    .pipe(sourcemaps.init())
+    .pipe( terser() )
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('build/js')); // indicamos la nueva ubicación
 
     done();

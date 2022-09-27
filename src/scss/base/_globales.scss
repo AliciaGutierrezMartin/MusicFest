@@ -16,6 +16,10 @@ body {
     &.fijar-body {
         overflow: hidden; // no deja hacer scroll una vez que se este mostrando el overlay de la galeria
     }
+    &.body-scroll {
+        padding-top: 8.6rem;        // hay que ponerle el mismo tamaño que en el original, y hacer unos ajustes en el header (mq)
+
+    }
 
 }
 
