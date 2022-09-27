@@ -125,6 +125,8 @@ exports.versionAvif = versionAvif;
 
 exports.dev = parallel(imagenes, versionWebp, versionAvif, javascript, dev);
 
+exports.prod = parallel(imagenes, versionWebp, versionAvif, javascript, css);
+
 // si en la terminal escribimos npx gulp css, te marca error, sass no es una función, y eso es que tenemos un require sass
 // necesitamos un conector de sass que se pueda comunicar con gulp, este tiene muchos plugins y lo puedes buscar
 // para hacerlo en el terminal npm i --save-dev gulp-sass, y se instalaran mas paquetes y aparecerá en json con su nombre
